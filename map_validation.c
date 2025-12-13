@@ -1,0 +1,86 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_validation.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luimarti <luimarti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 11:54:51 by luimarti          #+#    #+#             */
+/*   Updated: 2025/12/05 15:17:58 by luimarti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+int	is_rectangular(char **map, int line_count)
+{
+	size_t	reference;
+	size_t	len;
+	int		i;
+//Contamos la longitud de la primera linea que nos servira como referencia y restamos el salto de linea!
+	reference = ft_strlen(map[0]);
+	if (reference > 0 && map[0][reference - 1] == '\n')
+		reference--;
+//A continuacion comparamos el resto de lineas con la primera como referencia.
+	i = 1;
+	while (i < line_count)
+	{
+		len = ft_strlen (map[i]);
+		if (len > 0 && map[i][len - 1] == '\n')
+			len--;
+		if (len != reference)
+			return (0);
+		else
+			i++;
+	}
+	return (1);
+}
+
+void	elements_each_line(char *line, t_map_elements *elements, size_t width)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < width)
+	{
+		if (line[i] == 'E')
+			elements->exit++;
+		else if (line[i] == 'P')
+			elements->player++;
+		else if (line[i] == '0')
+			elements->space++;
+		else if (line[i] == 'C')
+			elements->collectible++;
+		i++;
+	}
+}
+
+int	validate_elements(t_map_elements *elements)
+{
+	if (elements->exit != 1 || elements->player != 1)
+		return (0);
+	if (elements->space < 1 || elements->collectible < 1)
+		return (0);
+	return (1);
+}
+
+int	check_map_elements(char **map, int line_count)
+{
+	int				j;
+	size_t			width;
+	t_map_elements	elements;
+
+	j = 1;
+	width = ft_strlen(map[0]);
+	elements = (t_map_elements){0};
+	if (width > 0 && map[0][width - 1] == '\n')
+		width--;
+	while (j < line_count - 1)
+	{
+		elements_each_line(map[j], &elements, width);
+		j++;
+	}
+	if (!validate_elements(&elements))
+		return (0);
+	return (1);
+}
