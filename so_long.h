@@ -6,7 +6,7 @@
 /*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 08:34:12 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/12 21:10:43 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/13 20:29:23 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <MLX42/MLX42.h>
+
+typedef struct s_textures
+{
+    mlx_image_t *wall;
+    mlx_image_t *floor;
+    mlx_image_t *player;
+    mlx_image_t *collectible;
+    mlx_image_t *exit;
+}   t_textures;
 
 typedef struct s_position
 {
@@ -46,6 +56,10 @@ typedef struct s_map_elements
 	int player;
 	int collectible;
 }t_map_elements;
+
+/*MLX42*/
+
+void start_game(char **map, int line_count);
 
 /*Main part*/
 int		count_lines(int fd);

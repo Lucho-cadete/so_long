@@ -6,7 +6,7 @@
 /*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 08:26:26 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/12 21:29:29 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/13 17:47:58 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ int	main(int argc, char **argv)
 		i++;
 	}
 //Liberar mallocs!
+	start_game(map, line_count);
 	i = 0;
 	while (i < line_count)
 	{
