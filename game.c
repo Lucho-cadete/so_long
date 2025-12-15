@@ -6,7 +6,7 @@
 /*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 08:34:12 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/14 22:41:40 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/15 20:50:42 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,12 @@ void render_map(mlx_t *mlx, char **map, int line_count, t_textures *tex)
             else if (map[j][i] == 'C')
                 mlx_image_to_window(mlx, tex->collectible, i * 64, j * 64);
             else if (map[j][i] == 'E')
-                mlx_image_to_window(mlx, tex->exit, i * 64, j * 64);
+            {
+    			if (count_c(map, line_count) > 0)
+        			mlx_image_to_window(mlx, tex->exit_closed, i * 64, j * 64);
+    			else
+        			mlx_image_to_window(mlx, tex->exit_open, i * 64, j * 64);
+			}
             i++;
         }
         j++;
@@ -66,25 +71,33 @@ t_textures *load_textures(mlx_t *mlx)
     textures->floor = load_single_texture(mlx, "textures/floor.png");
     textures->player = load_single_texture(mlx, "textures/player.png");
     textures->collectible = load_single_texture(mlx, "textures/collectible.png");
-    textures->exit = load_single_texture(mlx, "textures/exit.png");
+    textures->exit_closed = load_single_texture(mlx, "textures/exit_closed.png");
+	textures->exit_open= load_single_texture(mlx, "textures/exit_open.png");
     
     return (textures);
 }
 
 void execute_new_movement(t_game *game, int new_x, int new_y)
 {
-	// char tile;
+	char tile;
 
-	// tile = game->map[new_y][new_x];
+	tile = game->map[new_y][new_x];
+	if (tile == 'E')
+	{
+    	if (count_c(game->map, game->line_count) == 0)
+    	{
+        	printf("🎉 YOU WIN!: %d\n", game->moves);
+        	mlx_close_window(game->mlx);
+        	return;
+    	}
+    	else
+	        return;
+	}
 	game->map[game->player_y][game->player_x] = '0';
 	game->map[new_y][new_x] = 'P';
 	game->player_y = new_y;
 	game->player_x = new_x;
 	game->moves++;
-	// if (tile == 'C')
-	// 	handle_collectibles(game);
-	// if (tile == 'E')
-	// 	check_victory(game);
 	printf ("Number of moves: %d\n", game->moves);
 	render_map(game->mlx, game->map, game->line_count, game->textures);
 	return;
