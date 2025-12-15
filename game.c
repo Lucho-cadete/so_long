@@ -6,7 +6,7 @@
 /*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 08:34:12 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/15 20:50:42 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/15 21:01:59 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,10 @@ void execute_new_movement(t_game *game, int new_x, int new_y)
 	{
     	if (count_c(game->map, game->line_count) == 0)
     	{
-        	printf("🎉 YOU WIN!: %d\n", game->moves);
-        	mlx_close_window(game->mlx);
-        	return;
+        	render_map(game->mlx, game->map, game->line_count, game->textures);
+            printf("🎉 YOU WIN! Moves: %d\n", game->moves);
+			mlx_close_window(game->mlx);
+            return;
     	}
     	else
 	        return;
@@ -98,7 +99,7 @@ void execute_new_movement(t_game *game, int new_x, int new_y)
 	game->player_y = new_y;
 	game->player_x = new_x;
 	game->moves++;
-	printf ("Number of moves: %d\n", game->moves);
+	printf ("Move number: %d\n", game->moves);
 	render_map(game->mlx, game->map, game->line_count, game->textures);
 	return;
 }
@@ -132,10 +133,7 @@ void handler_movement(mlx_key_data_t keydata, t_game *game)
 void key_handler(mlx_key_data_t keydata, void *param)
 {
     t_game *game;
-	// int new_x;
-	// int new_y;
-	// int moved;
-    
+
 	game = param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
     	mlx_close_window(game->mlx);
