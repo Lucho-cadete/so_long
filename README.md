@@ -10,7 +10,9 @@
 
 ---
 
-**📹 Gameplay demo coming soon** (![Game Preview](assets/gameplay.gif))
+<p align="center">
+  <img src="assets/gameplay.gif" width="80%" alt="so_long gameplay">
+</p>
 
 ## 📖 About
 
