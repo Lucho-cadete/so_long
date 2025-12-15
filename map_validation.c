@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luimarti <luimarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:54:51 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/05 15:17:58 by luimarti         ###   ########.fr       */
+/*   Updated: 2025/12/15 22:20:58 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ int	is_rectangular(char **map, int line_count)
 	size_t	reference;
 	size_t	len;
 	int		i;
-//Contamos la longitud de la primera linea que nos servira como referencia y restamos el salto de linea!
+
 	reference = ft_strlen(map[0]);
 	if (reference > 0 && map[0][reference - 1] == '\n')
 		reference--;
-//A continuacion comparamos el resto de lineas con la primera como referencia.
 	i = 1;
 	while (i < line_count)
 	{

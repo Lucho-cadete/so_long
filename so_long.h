@@ -6,51 +6,51 @@
 /*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 08:34:12 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/15 20:32:30 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/15 22:27:21 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-# endif
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 1024
+#endif
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <MLX42/MLX42.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <MLX42/MLX42.h>
 
 typedef struct s_textures
 {
-    mlx_image_t *wall;
-    mlx_image_t *floor;
-    mlx_image_t *player;
-    mlx_image_t *collectible;
-    mlx_image_t *exit_closed;
-	mlx_image_t *exit_open;
-}   t_textures;
+	mlx_image_t	*wall;
+	mlx_image_t	*floor;
+	mlx_image_t	*player;
+	mlx_image_t	*collectible;
+	mlx_image_t	*exit_closed;
+	mlx_image_t	*exit_open;
+}	t_textures;
 
 typedef struct s_game
 {
-    mlx_t       *mlx;
-    t_textures  *textures;
-    char        **map;
-    int         line_count;
-    int         player_x;
-    int         player_y;
-    int         moves;
-}   t_game;
+	mlx_t		*mlx;
+	t_textures	*textures;
+	char		**map;
+	int			line_count;
+	int			player_x;
+	int			player_y;
+	int			moves;
+}	t_game;
 
 typedef struct s_position
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 }	t_position;
 
 typedef struct s_flood_data
 {
-	int count_c;
-	int found_e;
+	int	count_c;
+	int	found_e;
 }	t_flood_data;
 
 typedef struct s_maps
@@ -63,11 +63,11 @@ typedef struct s_maps
 
 typedef struct s_map_elements
 {
-	int space;
-	int exit;
-	int player;
-	int collectible;
-}t_map_elements;
+	int	space;
+	int	exit;
+	int	player;
+	int	collectible;
+}	t_map_elements;
 
 /*MLX42*/
 
@@ -96,8 +96,7 @@ void	find_player(char **map, int line_count, int *x, int *y);
 void	fill_line_with_ceros(char *line, int width);
 char	**create_parallel_map(int line_count, int width);
 int		validate_path(char **map, int line_count);
-int		setup_flood_fill(char **map, int line_count, t_maps *maps,
-					t_position *player);
+int		setup_flood_fill(char **map, int line_count, t_maps *maps, t_position *player);
 void	flood_fill(t_maps *maps, int x, int y, t_flood_data *data);
 
 /*GNL*/

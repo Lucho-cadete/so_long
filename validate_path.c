@@ -6,7 +6,7 @@
 /*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:58:18 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/12 21:27:11 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/15 22:22:02 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,16 +111,14 @@ int	validate_path(char **map, int line_count)
 	total_c = count_c(map, line_count);
 	data = (t_flood_data){0, 0};
 	flood_fill(&maps, player.x, player.y, &data);
-	
 	printf("\n=== MAPA VISITADO ===\n");
-    while (i < line_count)
-    {
-        printf("%s\n", maps.visited[i]);
-        i++;
-    }
-    printf("=====================\n\n");
+	while (i < line_count)
+	{
+		printf("%s\n", maps.visited[i]);
+		i++;
+	}
+	printf("=====================\n\n");
 	i = 0;
-	
 	while (i < line_count)
 	{
 		free (maps.visited[i]);

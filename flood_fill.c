@@ -6,7 +6,7 @@
 /*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:58:18 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/12 21:11:41 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/15 22:19:16 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,40 +30,21 @@ int	setup_flood_fill(char **map, int line_count, t_maps *maps,
 	return (1);
 }
 
-void flood_fill(t_maps *maps, int x, int y, t_flood_data *data)
+void	flood_fill(t_maps *maps, int x, int y, t_flood_data *data)
 {
-    // === CASOS BASE (condiciones de parada) ===
-    
-    // 1. ¿Estoy fuera de los límites?
-    if (x < 0 || y < 0 || x >= maps->width || y >= maps->height)
-        return;
-    
-    // 2. ¿Es un muro?
-    if (maps->original[y][x] == '1')
-        return;
-    
-    // 3. ¿Ya visité esta posición?
-    if (maps->visited[y][x] == '1')
-        return;
-    
-    // === PROCESAR POSICIÓN ACTUAL ===
-    
-    // 4. Marcar como visitado
-    maps->visited[y][x] = '1';
-    
-    // 5. ¿Es un coleccionable?
-    if (maps->original[y][x] == 'C')
-        data->count_c++;
-    
-    // 6. ¿Es la salida?
-    if (maps->original[y][x] == 'E')
-        data->found_e = 1;
-    
-    // === CASO RECURSIVO (expandirse) ===
-    
-    // 7. Llamar recursivamente en 4 direcciones
-    flood_fill(maps, x, y - 1, data);  // Arriba
-    flood_fill(maps, x, y + 1, data);  // Abajo
-    flood_fill(maps, x - 1, y, data);  // Izquierda
-    flood_fill(maps, x + 1, y, data);  // Derecha
+	if (x < 0 || y < 0 || x >= maps->width || y >= maps->height)
+		return ;
+	if (maps->original[y][x] == '1')
+		return ;
+	if (maps->visited[y][x] == '1')
+		return ;
+	maps->visited[y][x] = '1';
+	if (maps->original[y][x] == 'C')
+		data->count_c++;
+	if (maps->original[y][x] == 'E')
+		data->found_e = 1;
+	flood_fill(maps, x, y - 1, data);
+	flood_fill(maps, x, y + 1, data);
+	flood_fill(maps, x - 1, y, data);
+	flood_fill(maps, x + 1, y, data);
 }

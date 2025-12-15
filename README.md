@@ -13,6 +13,7 @@
 <p align="center">
   <img src="assets/gameplay.gif" width="80%" alt="so_long gameplay">
 </p>
+//ARREGLAR EL DEMOOOOOO!
 
 ## 📖 About
 
