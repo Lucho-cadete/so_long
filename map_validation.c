@@ -6,11 +6,33 @@
 /*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:54:51 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/16 11:55:40 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/16 23:11:07 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	count_c(char **map, int line_count)
+{
+	int	counter;
+	int	j;
+	int	i;
+
+	counter = 0;
+	j = 0;
+	while (j < line_count)
+	{
+		i = 0;
+		while (map[j][i] != '\n' && map[j][i] != '\0')
+		{
+			if (map[j][i] == 'C')
+				counter++;
+			i++;
+		}
+		j++;
+	}
+	return (counter);
+}
 
 int	is_rectangular(char **map, int line_count)
 {
@@ -51,11 +73,11 @@ int	elements_each_line(char *line, t_map_elements *elements, size_t width)
 		else if (line[i] == 'C')
 			elements->collectible++;
 		else if (line[i] == '1')
-            ;
-        else
+			;
+		else
 		{
 			ft_putstr_fd ("Error: Invalid element detected!\n", 2);
-            return(0); 
+			return (0);
 		}
 		i++;
 	}

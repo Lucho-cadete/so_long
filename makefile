@@ -6,7 +6,7 @@
 #    By: lucho <lucho@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/25 09:35:50 by luimarti          #+#    #+#              #
-#    Updated: 2025/12/12 22:56:59 by lucho            ###   ########.fr        #
+#    Updated: 2025/12/16 23:18:48 by lucho            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,10 @@ FILES = so_long.c \
 		box_of_tools.c \
 		validate_path.c \
 		flood_fill.c \
-		game.c
+		game.c \
+		game_utils.c \
+		game_render.c \
+		game_moving.c
 OBJ_DIR = o_files
 OBJS = $(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))
 RM = rm -f

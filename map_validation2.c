@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luimarti <luimarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 15:13:29 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/05 15:14:06 by luimarti         ###   ########.fr       */
+/*   Updated: 2025/12/16 23:43:22 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,20 @@ int	is_closed(char **map, int line_count)
 	if (!check_vertical_walls(map, line_count, width))
 		return (0);
 	return (1);
+}
+
+int	count_lines(int fd)
+{
+	int		counter;
+	char	*line;
+
+	counter = 0;
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		counter++;
+		free (line);
+		line = get_next_line(fd);
+	}
+	return (counter);
 }

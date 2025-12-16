@@ -6,19 +6,22 @@
 /*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 08:34:12 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/16 13:10:22 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/16 23:15:16 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1024
-#endif
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <MLX42/MLX42.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
+
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <MLX42/MLX42.h>
 
 typedef struct s_textures
 {
@@ -73,8 +76,19 @@ typedef struct s_map_elements
 
 void	start_game(char **map, int line_count);
 int		calculate_window_width(char **map);
-t_game	init_game_struct(mlx_t *mlx, char **map, int line_count, t_textures *tex);
-void	free_textures(mlx_t *mlx, t_textures *textures);
+t_game	init_game_struct(mlx_t *mlx, char **map,
+			int line_count, t_textures *tex);
+void	free_images(mlx_t *mlx, t_textures *textures);
+void	free_map(char **map, int line_count);
+void	cleanup_game(t_game *game);
+void	render_map(mlx_t *mlx, char **map, int line_count, t_textures *tex);
+void	render_exit_open(mlx_t *mlx, t_textures *tex, int i, int j);
+void	render_exit(mlx_t *mlx, t_textures *tex, int i, int j);
+void	key_handler(mlx_key_data_t keydata, void *param);
+void	handler_movement(mlx_key_data_t keydata, t_game *game);
+void	calculate_new_position(mlx_key_data_t keydata,
+			t_game *game, int *new_x, int *new_y);
+void	execute_new_movement(t_game *game, int new_x, int new_y);
 
 /*Main part*/
 int		count_lines(int fd);
@@ -97,7 +111,8 @@ void	find_player(char **map, int line_count, int *x, int *y);
 void	fill_line_with_ceros(char *line, int width);
 char	**create_parallel_map(int line_count, int width);
 int		validate_path(char **map, int line_count);
-int		setup_flood_fill(char **map, int line_count, t_maps *maps, t_position *player);
+int		setup_flood_fill(char **map, int line_count,
+			t_maps *maps, t_position *player);
 void	flood_fill(t_maps *maps, int x, int y, t_flood_data *data);
 
 /*GNL*/
@@ -119,3 +134,5 @@ void	ft_putstr_fd(char *s, int fd);
 /*Extra tools*/
 
 size_t	ft_strlen(const char *str);
+
+#endif
