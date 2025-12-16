@@ -6,11 +6,30 @@
 /*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 08:34:12 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/15 22:35:22 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/16 13:17:14 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	free_textures(mlx_t *mlx, t_textures *textures)
+{
+	if (!textures)
+		return;
+	if (textures->wall)
+		mlx_delete_image(mlx, textures->wall);
+	if (textures->floor)
+		mlx_delete_image(mlx, textures->floor);
+	if (textures->player)
+		mlx_delete_image(mlx, textures->player);
+	if (textures->collectible)
+		mlx_delete_image(mlx, textures->collectible);
+	if (textures->exit_open)
+		mlx_delete_image(mlx, textures->exit_open);
+	if (textures->exit_closed)
+		mlx_delete_image(mlx, textures->exit_closed);
+	free(textures);
+}
 
 void	render_map(mlx_t *mlx, char **map, int line_count, t_textures *tex)
 {
@@ -182,5 +201,6 @@ void	start_game(char **map, int line_count)
 	render_map(game.mlx, game.map, game.line_count, game.textures);
 	mlx_key_hook(game.mlx, key_handler, &game);
 	mlx_loop(game.mlx);
+	free_textures(game.mlx, textures);
 	mlx_terminate(game.mlx);
 }

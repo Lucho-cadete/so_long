@@ -6,7 +6,7 @@
 /*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:54:51 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/15 22:20:58 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/16 11:55:40 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	is_rectangular(char **map, int line_count)
 	return (1);
 }
 
-void	elements_each_line(char *line, t_map_elements *elements, size_t width)
+int	elements_each_line(char *line, t_map_elements *elements, size_t width)
 {
 	size_t	i;
 
@@ -50,8 +50,16 @@ void	elements_each_line(char *line, t_map_elements *elements, size_t width)
 			elements->space++;
 		else if (line[i] == 'C')
 			elements->collectible++;
+		else if (line[i] == '1')
+            ;
+        else
+		{
+			ft_putstr_fd ("Error: Invalid element detected!\n", 2);
+            return(0); 
+		}
 		i++;
 	}
+	return (1);
 }
 
 int	validate_elements(t_map_elements *elements)
@@ -76,7 +84,8 @@ int	check_map_elements(char **map, int line_count)
 		width--;
 	while (j < line_count - 1)
 	{
-		elements_each_line(map[j], &elements, width);
+		if (!elements_each_line(map[j], &elements, width))
+			return (0);
 		j++;
 	}
 	if (!validate_elements(&elements))

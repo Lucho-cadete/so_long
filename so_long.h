@@ -6,7 +6,7 @@
 /*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 08:34:12 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/15 22:27:21 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/16 13:10:22 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_map_elements
 void	start_game(char **map, int line_count);
 int		calculate_window_width(char **map);
 t_game	init_game_struct(mlx_t *mlx, char **map, int line_count, t_textures *tex);
+void	free_textures(mlx_t *mlx, t_textures *textures);
 
 /*Main part*/
 int		count_lines(int fd);
@@ -87,7 +88,7 @@ int		check_vertical_walls(char **map, int line_count, size_t width);
 int		is_closed(char **map, int line_count);
 int		check_map_elements(char **map, int line_count);
 int		validate_elements(t_map_elements *elements);
-void	elements_each_line(char *line, t_map_elements *elements, size_t width);
+int		elements_each_line(char *line, t_map_elements *elements, size_t width);
 
 /*PATH*/
 

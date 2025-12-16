@@ -6,7 +6,7 @@
 /*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 08:26:26 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/13 17:47:58 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/16 11:52:58 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	int		fd;
 	int		line_count;
 	char 	**map;
-	int i;
+	int		i;
 
 // Validacion.
 	if (argc != 2)
@@ -68,7 +68,6 @@ int	main(int argc, char **argv)
 		perror("Error by opening!");
 		return (1);
 	}
-
 	line_count = count_lines(fd);
 	close (fd);
 // Segunda apertura del fd para hacer malloc.
@@ -81,6 +80,12 @@ int	main(int argc, char **argv)
 	i = 0;
 	map = read_map(fd, line_count);
 	close(fd);
+	if (line_count == 0 || !map || !map[0])
+	{
+		ft_putstr_fd("Error: Empty map\n", 2);
+		free(map);
+		exit(1);
+	}
 	if (!is_rectangular(map, line_count))
 	{
 		ft_putstr_fd("Error: Map is not rectangular!\n", 2);
@@ -90,38 +95,38 @@ int	main(int argc, char **argv)
 			i++;
 		}
 		free (map);
-		return(1);
+		return (1);
 	}
 	if (!is_closed(map, line_count))
 	{
 		ft_putstr_fd("Error: Map is not closed!\n", 2);
 		while (i < line_count)
 		{
-			free (map[i]);
+			free(map[i]);
 			i++;
 		}
-		free (map);
-		return(1);
+		free(map);
+		return (1);
 	}
 	if (!check_map_elements(map, line_count))
 	{
 		ft_putstr_fd("Error: Invalid number of elemets!\n", 2);
 		while (i < line_count)
 		{
-			free (map[i]);
+			free(map[i]);
 			i++;
 		}
-		free (map);
-		return(1);
+		free(map);
+		return (1);
 	}
 	printf("✅ All the elements are where they to be!!!\n");
 
 	if (!validate_path(map, line_count))
-    {
-        ft_putstr_fd("Error\n", 2);
+	{
+		ft_putstr_fd("Error\n", 2);
         // liberar map
-        return (1);
-    }
+		return (1);
+	}
 //Printf para testear
 	i = 0;
 	while(i < line_count)
@@ -137,7 +142,7 @@ int	main(int argc, char **argv)
 		free (map[i]);
 		i++;
 	}
-	free (map);
+	free(map);
 	printf ("\n\nMISION COMPLETED!!!\n");
 	return (0);
 }

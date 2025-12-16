@@ -6,7 +6,7 @@
 /*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:58:18 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/12 16:33:11 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/16 10:55:14 by lucho            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *str)
 {
 	size_t	length;
 
+	if (!str)
+		return (0);
 	length = 0;
 	while (str[length] != '\0')
 		length++;
