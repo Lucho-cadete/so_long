@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lucho <lucho@student.42.fr>                +#+  +:+       +#+         #
+#    By: luimarti <luimarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/25 09:35:50 by luimarti          #+#    #+#              #
-#    Updated: 2025/12/16 23:18:48 by lucho            ###   ########.fr        #
+#    Updated: 2025/12/17 12:24:55 by luimarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@
 NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-MLX_DIR = $(HOME)/MLX42
+MLX_DIR = MLX42
 MLX_LIB = $(MLX_DIR)/build/libmlx42.a
-MLX_INCLUDE = -I$(MLX_DIR)/include
+MLX_INCLUDE = -I $(MLX_DIR)/include
 LDFLAGS = -lglfw -ldl -pthread -lm
 FILES = so_long.c \
 		get_next_line.c \

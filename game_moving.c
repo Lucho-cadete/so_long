@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_moving.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
+/*   By: luimarti <luimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 22:49:11 by lucho             #+#    #+#             */
-/*   Updated: 2025/12/16 22:55:08 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/17 12:56:08 by luimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ void	handler_movement(mlx_key_data_t keydata, t_game *game)
 	int	new_x;
 	int	new_y;
 
+	if (keydata.key != MLX_KEY_W && keydata.key != MLX_KEY_A
+		&& keydata.key != MLX_KEY_S && keydata.key != MLX_KEY_D)
+		return ;
 	calculate_new_position(keydata, game, &new_x, &new_y);
 	if (game->map[new_y][new_x] != '1')
 		execute_new_movement(game, new_x, new_y);

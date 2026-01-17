@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucho <lucho@student.42.fr>                +#+  +:+       +#+        */
+/*   By: luimarti <luimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 08:34:12 by luimarti          #+#    #+#             */
-/*   Updated: 2025/12/16 23:15:16 by lucho            ###   ########.fr       */
+/*   Updated: 2025/12/17 12:25:07 by luimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
-# include <MLX42/MLX42.h>
+# include "MLX42/MLX42.h"
 
 typedef struct s_textures
 {
